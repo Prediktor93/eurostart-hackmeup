@@ -3,7 +3,7 @@ import React from 'react'
 class TrainSearchForm extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {type: ''}
+        this.state = {type: '', travels : []}
     }
 
 
@@ -21,21 +21,17 @@ class TrainSearchForm extends React.Component {
         this.setState({type : val});
         this.updateButtons(val);
     }
-
-   
-
-    getTrainSearch(){
+    
+    async getTrainSearch(){
         let traininfo={
             from : document.getElementById("from").value,
             to : document.getElementById("to").value,
-            passenger:document.getElementById("passengers").value,
+            passengers:document.getElementById("passengers").value,
             type : this.state.type
         }
 
-        console.dir(traininfo)
-  
         const url = "/train"
-        return fetch(url, {
+        const data =  await fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -44,17 +40,18 @@ class TrainSearchForm extends React.Component {
         body: JSON.stringify(traininfo)
         })
         .then(function (res) {
-            //console.log(res.json())
             return res.text()
         })
         .then(function (val) {
             console.log(JSON.parse(val))
-            return JSON.parse(val)
+            return JSON.parse(val);
         })
         .catch(function (err) {
-            // Send logs to an aggregation service
-            //console.dir(err)
+            // TODO Send logs to an aggregation service
+            console.dir(err)
         })
+
+        this.setState({travels : data})
     }
 
     render() {
@@ -69,11 +66,35 @@ class TrainSearchForm extends React.Component {
                 <input id="to" class="col-6" placeholder="City or station" name="to" type="text"></input>
             </div>
             <div class="form-group row">
-                <input id="passengers" class="col-12" placeholder="Depart - return" name="when" type="text"></input>
+                <input id="passengers" class="col-12" placeholder="Depart - return" name="when" type="nuber"></input>
             </div>
             <div class="form-group row">
                 <button onClick={() => this.getTrainSearch()} class="col-6 text-center" onclick="getTrainSearch()">Search</button>
             </div>
+
+            <br></br>
+            <div>
+                {this.state.travels.length > 0 ?
+                <table  class="table">
+                <thead class="thead-dark">
+                    <tr>
+                    <th scope="col">Ruta</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {this.state.travels.map(item => (
+                        <tr>
+                            <th key={item.route}>{item.route}</th>  
+                            <th key={item.departureTData}>{item.departureTData}</th>
+                            <th key={item.price}>{item.price} €</th>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table> : <hr></hr>}
+            </div>
+
     </div>)
     }
 }
