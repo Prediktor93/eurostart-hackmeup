@@ -63,9 +63,9 @@ module.exports = async (req, res) => {
         }
 
         sHora = Hora;
-        if(sHora < 10){ sHora = "0"+Hora;}
+        if(sHora < 10){ sHora = '0'+Hora;}
 
-        resultado = {'departureTData': getDateToday()+","+Hora+":00", 'price':price, 'route':from+'-'+to};
+        resultado = {'departureTData': getDateToday()+" "+sHora+":00", 'price':price, 'route':from+'-'+to};
         disponibles.push(resultado);
 
         // Mock para calcular la nueva hora
