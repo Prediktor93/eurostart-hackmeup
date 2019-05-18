@@ -7,7 +7,8 @@
               { "src": "package.json", "use": "@now/static-build", "config": { "distDir": "build" } }
             ],
   "routes": [
-    { "src":"/train", "methods":["POST"], "dest":"train.js"},
+    { "src": "/train", "methods":["POST"], "dest":"train.js"},
+    { "src": "/hotel", "methods":["POST"], "dest":"hotel.js"},
     { "src": "/static/(.*)", "headers": { "cache-control": "s-maxage=31536000,immutable" }, "dest": "/static/$1" },
     { "src": "/favicon.ico", "dest": "/favicon.ico" },
     { "src": "/asset-manifest.json", "dest": "/asset-manifest.json" },
