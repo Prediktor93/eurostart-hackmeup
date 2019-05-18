@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
 import TrainSearchForm from './search_components/index.jsx';
 import HotelSearchForm from './hotel_search/index.jsx'
 import RetrieveBookingForm from './retrieve_booking/index.jsx';
@@ -7,7 +8,7 @@ import './App.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import "react-tabs/style/react-tabs.css";
 
-function App() {
+function AppRouter() {
   return (
     <div>
       <Tabs>
@@ -31,4 +32,4 @@ function App() {
   );
 }
 
-export default App;
+export default AppRouter;
