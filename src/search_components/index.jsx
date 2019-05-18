@@ -58,8 +58,8 @@ class TrainSearchForm extends React.Component {
         return (
         <div id="airportSelectionContainer" class="form-group">
             <div class="form-group row">
-                <button onClick={() => this.setTravelType('VUELTA')} class="btn btn-primary col-6" id="retBtn">Return</button>
-                <button onClick={() => this.setTravelType('IDA')} class="btn btn-primary col-6" id="oneWay">One Way</button>
+                <button onClick={() => this.setTravelType('VUELTA')} class="btn btn-outline-primary col-6" id="retBtn">Return</button>
+                <button onClick={() => this.setTravelType('IDA')} class="btn btn-outline-primary col-6" id="oneWay">One Way</button>
             </div>
             <div class="form-group row">
                 <input id="from" class="col-6" placeholder="City or station" name="from" type="text"></input>
@@ -68,8 +68,8 @@ class TrainSearchForm extends React.Component {
             <div class="form-group row">
                 <input id="passengers" class="col-12" placeholder="Number of passengers" name="when" type="number"></input>
             </div>
-            <div class="form-group row">
-                <button onClick={() => this.getTrainSearch()} class="col-6 text-center" onclick="getTrainSearch()">Search</button>
+            <div class="form-group row text-center">
+                <button onClick={() => this.getTrainSearch()} class="col-6 mx-auto" onclick="getTrainSearch()">Search</button>
             </div>
 
             <br></br>

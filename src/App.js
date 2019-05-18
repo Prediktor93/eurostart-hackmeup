@@ -11,6 +11,7 @@ import "react-tabs/style/react-tabs.css";
 function AppRouter() {
   return (
     <div>
+      <div id="mainContainer" class="form-signin">
       <Tabs>
         <TabList>
           <Tab>Train Search</Tab>
@@ -28,6 +29,7 @@ function AppRouter() {
           <RetrieveBookingForm></RetrieveBookingForm>
         </TabPanel>
       </Tabs>
+      </div>
     </div>
   );
 }
