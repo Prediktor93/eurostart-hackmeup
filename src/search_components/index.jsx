@@ -66,7 +66,7 @@ class TrainSearchForm extends React.Component {
                 <input id="to" class="col-6" placeholder="City or station" name="to" type="text"></input>
             </div>
             <div class="form-group row">
-                <input id="passengers" class="col-12" placeholder="Depart - return" name="when" type="nuber"></input>
+                <input id="passengers" class="col-12" placeholder="Number of passengers" name="when" type="number"></input>
             </div>
             <div class="form-group row">
                 <button onClick={() => this.getTrainSearch()} class="col-6 text-center" onclick="getTrainSearch()">Search</button>
