@@ -1,18 +1,6 @@
 const { json  } = require('micro')
 const { validate } = require("validate.js");
 
-// Check that every field exists in the body message
-function validateInput(body){
-  if( 'from' in body && 
-      'to'   in body &&
-      'type' in body &&
-      'passengers' in body){
-    return true;
-  }else{
-    return false;
-  }
-}
-
 var constraints = {
   from: {
     presence: true,
