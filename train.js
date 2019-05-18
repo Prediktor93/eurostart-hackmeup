@@ -1,12 +1,19 @@
 const { json  } = require('micro')
-module.exports = async (req, res) => {
-  const body = await json(req)
 
-  from = body.from;
-  to = body.to;
-  type = body.type;
-  passengers = body.passengers;
+// Check that every field exists in the body message
+function validateInput(body){
+  if( 'from' in body && 
+      'to'   in body &&
+      'type' in body &&
+      'passengers' in body){
+    return true;
+  }else{
+    return false;
+  }
+}
 
+// Obtiene la fecha actual en formato 'yyyy-mm-dd'
+function getDateToday(){
   var today = new Date();
   var dd = today.getDate();
   var mm = today.getMonth() + 1; //January is 0!
@@ -18,7 +25,20 @@ module.exports = async (req, res) => {
   if (mm < 10) {
     mm = '0' + mm;
   } 
-  var today = yyyy + '/' + mm + '/' + dd;
+  return yyyy + '/' + mm + '/' + dd;
+}
+
+module.exports = async (req, res) => {
+  const body = await json(req)
+  if(!validateInput(body)){
+    res.status = 400;
+    res.end('Datos no validos.');
+  }
+  from = body.from;
+  to = body.to;
+  type = body.type;
+  passengers = body.passengers;
+
   var disponibles = [];
 
   num_resultados = Math.floor((Math.random()*2))+2;
@@ -34,18 +54,15 @@ module.exports = async (req, res) => {
     }else{
         price = passengers*15.0;
     }
+
     sHora = Hora;
     if(sHora < 10){ sHora = "0"+Hora;}
-    resultado = {'departureTData': today+","+Hora+":00", 'price':price, 'route':from+'-'+to};
+
+    resultado = {'departureTData': getDateToday()+","+Hora+":00", 'price':price, 'route':from+'-'+to};
     disponibles.push(resultado);
+
+    // Mock para calcular la nueva hora
     Hora = Hora + deltaHora;
   }
-  /* Formato de retorno
-  [{
-    departureTDate: '2019-05-19',
-    price:20,
-    route:'MAD-VAL'
-    }]
-    */
   res.end(JSON.stringify(disponibles));
 }
