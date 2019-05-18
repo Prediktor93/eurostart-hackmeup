@@ -6,9 +6,23 @@ class TrainSearchForm extends React.Component {
         this.state = {type: ''}
     }
 
-    setTravelType(val){
-        this.setState({type : val})
+
+    updateButtons(value){
+        if(value == 'VUELTA'){
+            document.getElementById('retBtn').className='btn col-6 btn-primary';
+            document.getElementById('oneWay').className='btn col-6 btn-outline-primary';
+        }else{
+            document.getElementById('retBtn').className='btn col-6 btn-outline-primary';
+            document.getElementById('oneWay').className='btn col-6 btn-primary';
+        }
     }
+    
+    setTravelType(val){
+        this.setState({type : val});
+        this.updateButtons(val);
+    }
+
+   
 
     getTrainSearch(){
         let traininfo={
@@ -47,8 +61,8 @@ class TrainSearchForm extends React.Component {
         return (
         <div id="airportSelectionContainer" class="form-group">
             <div class="form-group row">
-                <button onClick={() => this.setTravelType('VUELTA')} class="btn btn-primary col-6">Return</button>
-                <button onClick={() => this.setTravelType('IDA')} class="btn btn-primary col-6">One Way</button>
+                <button onClick={() => this.setTravelType('VUELTA')} class="btn btn-primary col-6" id="retBtn">Return</button>
+                <button onClick={() => this.setTravelType('IDA')} class="btn btn-primary col-6" id="oneWay">One Way</button>
             </div>
             <div class="form-group row">
                 <input id="from" class="col-6" placeholder="City or station" name="from" type="text"></input>
