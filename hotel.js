@@ -1,20 +1,21 @@
 const { json  } = require('micro')
-//const { validate } = require("validate.js");
+const { validate } = require("validate.js");
 
-/*var constraints = {
+var constraints = {
   city: {
     presence: true,
-    lenght: 3
+    numericality: false,
+//    length: { is: 3 },
   },
   nights: {
     presence: true,
-    numericality: true
+    numericality: true,
   },
   rooms:{
     presence: true,
-    numericality: true
+    numericality: true,
   }
-}*/
+}
 
 module.exports = async (req, res) => {
   const body = await json(req)
@@ -23,15 +24,20 @@ module.exports = async (req, res) => {
   p_nights = body.nights;
   p_rooms = body.rooms;
 
- // validate (body, constraints);
-  
-  var hotels = [];
-  var numberHotels = Math.floor(Math.random()*5)+1;
-  for (var i=0; i<numberHotels; i++) {
-      hotel_price = Math.floor(Math.random()*50)+10;
-      hotels.push({"name": "Hotel "+i+" "+p_city, "price":hotel_price*p_rooms*p_nights});
-  }
-
-  res.end(JSON.stringify(hotels));
+  //validate (body, constraints);
+  validate.async(body, constraints).then(
+    function () { // SUCCESS
+      var hotels = [];
+      var numberHotels = Math.floor(Math.random()*5)+1;
+      for (var i=0; i<numberHotels; i++) {
+          hotel_price = Math.floor(Math.random()*50)+10;
+          hotels.push({"name": "Hotel "+i+" "+p_city, "price":hotel_price*p_rooms*p_nights});
+      }
+      res.end(JSON.stringify(hotels));
+    }, 
+    function () { // ERROR
+      res.status = 400;
+      res.end('Datos no validos.');
+    });
 }
 
