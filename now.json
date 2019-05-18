@@ -14,8 +14,6 @@
     { "src": "/manifest.json", "dest": "/manifest.json" },
     { "src": "/precache-manifest.(.*)", "dest": "/precache-manifest.$1" },
     { "src": "/service-worker.js", "headers": { "cache-control": "s-maxage=0" }, "dest": "/service-worker.js" },
-    { "src": "/echo", "headers": {"cache-control": "s-maxage=0"}, "dest": "echo.js" },
+    { "src": "/echo?(.*)$", "dest": "/echo.js" },
     { "src": "/(.*)", "headers": {"cache-control": "s-maxage=0"}, "dest": "/index.html" }
   ]
-
-}
