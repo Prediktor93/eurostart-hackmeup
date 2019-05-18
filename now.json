@@ -1,4 +1,5 @@
 {
   "version": 2,
-  "builds": [{ "src": "echo.js", "use": "@now/node" }]
+  "builds": [ { "src": "echo.js", "use": "@now/node" },
+              { "src": "*.html", "use": "@now/static" }]
 }
