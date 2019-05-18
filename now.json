@@ -1,0 +1,4 @@
+{
+  "version": 2,
+  "builds": [{ "src": "echo.js", "use": "@now/node" }]
+}
