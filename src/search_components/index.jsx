@@ -32,13 +32,21 @@ class TrainSearchForm extends React.Component {
 
     render() {
         return (
-        <div id="airportSelectionContainer">
-            <button>Return</button>
-            <button>One Way</button>
-            <input placeholder="City or station" name="from" type="text"></input>
-            <input placeholder="City or station" name="to" type="text"></input>
-            <input placeholder="Depart - return" name="when" type="text"></input>
-            <button onclick="getTrainSearch()">Search</button>
+        <div id="airportSelectionContainer" class="form-group">
+            <div class="form-group row">
+                <button class="btn btn-primary col-6">Return</button>
+                <button class="btn btn-primary col-6">One Way</button>
+            </div>
+            <div class="form-group row">
+                <input class="col-6" placeholder="City or station" name="from" type="text"></input>
+                <input class="col-6" placeholder="City or station" name="to" type="text"></input>
+            </div>
+            <div class="form-group row">
+                <input class="col-12" placeholder="Depart - return" name="when" type="text"></input>
+            </div>
+            <div class="form-group row">
+                <button class="col-6 text-center" onclick="getTrainSearch()">Search</button>
+            </div>
     </div>)
     }
 }
