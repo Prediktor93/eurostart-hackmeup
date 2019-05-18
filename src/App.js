@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
-import TrainSearchForm from './search_components/index.jsx';
+import TrainSearchForm from './search_trains/index.jsx';
 import HotelSearchForm from './hotel_search/index.jsx'
 import RetrieveBookingForm from './retrieve_booking/index.jsx';
 import './App.css';
